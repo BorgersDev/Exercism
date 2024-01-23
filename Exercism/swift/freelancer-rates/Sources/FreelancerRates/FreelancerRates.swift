@@ -1,13 +1,12 @@
+let dailyHours = 8.0
+let daysByMonth = 22.0
+
 func dailyRateFrom(hourlyRate: Int) -> Double {
-  return Double(hourlyRate * 8)
+  return Double(hourlyRate) * dailyHours
 }
 func monthlyRateFrom(hourlyRate: Int, withDiscount discount: Double) -> Double {
-    let monthlyRate = (hourlyRate * 8) * 22
-    let result = Double(monthlyRate) - (Double(monthlyRate) * (discount / 100.0))
-    return result.rounded()
+    return (dailyRateFrom(hourlyRate: hourlyRate) * daysByMonth * (1 - discount * 0.01)).rounded()
 }
 func workdaysIn(budget: Double, hourlyRate: Int, withDiscount discount: Double) -> Double {
-    let hourlyDiscount = Double(hourlyRate) - (Double(hourlyRate) * (discount / 100.0))
-    let result = (budget / hourlyDiscount) / 8.0
-    return result.rounded(.down)
+    return (budget / (dailyRateFrom(hourlyRate: hourlyRate) * (1 - discount * 0.01))).rounded(.down)
 }
