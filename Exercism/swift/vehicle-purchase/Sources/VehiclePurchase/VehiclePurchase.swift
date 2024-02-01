@@ -8,7 +8,6 @@ func canIBuy(vehicle: String, price: Double, monthlyBudget: Double) -> String {
             return "Darn! No \(vehicle) for me"
         }
 }
-
 func licenseType(numberOfWheels wheels: Int) -> String {
     switch wheels {
     case 2,3:
@@ -21,15 +20,13 @@ func licenseType(numberOfWheels wheels: Int) -> String {
         return "We do not issue licenses for those types of vehicles"
     }
 }
-
 func calculateResellPrice(originalPrice: Int, yearsOld: Int) -> Int {
     switch yearsOld {
     case 0..<3:
-        return Int(Double(originalPrice) * 0.8)
-    case 3..<10: 
-        return Int(Double(originalPrice) * 0.7)
-    case 10...100:
-        return Int(Double(originalPrice) * 0.5)
-    default: return 0
+        return (originalPrice * 80) / 100
+    case 3..<10:
+        return (originalPrice * 70) / 100
+    default:
+        return (originalPrice * 50) / 100
     }
 }
